@@ -41,29 +41,6 @@ resource "aws_route_table_association" "public1" {
 }
 
 
-# resource "aws_network_acl" "allowall" {    
-#   vpc_id = aws_vpc.vpc.id
-
-#   egress {
-#     protocol = "-1" #all protocols (tcp/udp etc)
-#     rule_no = 100 #where it is in the stack
-#     action = "allow" #allows all 
-#     cidr_block = "0.0.0.0/0"
-#     from_port = 0 #from all port ranges
-#     to_port = 0 #to all port ranges
-
-#   }
-#   ingress {
-#     from_port = 0 #from all port ranges 
-#     to_port = 0 #to all port rangers
-#     protocol = "-1"
-#     action = "allow" #allows all
-#     rule_no = 200 #where it is in the stack
-#     cidr_block = "0.0.0.0/0" #
-#   } 
-# }
-
-
 resource "aws_security_group" "sg_for_lambda" { #redo
   name        = "sg_for_lambda"
   description = "Allow TLS inbound traffic"
