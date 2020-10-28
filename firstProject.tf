@@ -18,7 +18,8 @@ terraform {
 module "vpc" {
     source = "./modules/vpc"
     environment = var.environment
-    cidr = var.vpc_cidr
+    vpc_cidr = var.vpc_cidr
+    sub_cidr = var.sub_cidr
 }
 
 module "dynamoDB" {
@@ -35,19 +36,27 @@ module "iamRole" {
     environment = var.environment
     table_arn = module.dynamoDB.table_arn
  }
-#  module "lambda" {
-#     source = "./modules/lambda"
-#     environment = var.environment
-#     timeout_lambda = var.timeout_lambda
-#     aws_iam_arn = module.iamRole.aws_iam_arn
-#  }
+ module "lambda" {
+    source = "./modules/lambda"
+    environment = var.environment
+    timeout_lambda = var.timeout_lambda
+    aws_iam_arn = module.iamRole.aws_iam_arn
+    subnet = module.vpc.subnet
+    sg = module.vpc.sg
+    vpc = module.vpc.vpc
+ }
 
 
 variable "environment" {}
 variable "vpc_cidr" {}
+variable "sub_cidr" {}
 variable "aws_region" {}
 variable "dynamodb_table_name" {}
 variable "billing" {} 
 variable "write_capacity"{} 
 variable "read_capacity" {} 
 variable "timeout_lambda"{}
+
+
+
+
