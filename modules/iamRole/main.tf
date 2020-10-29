@@ -8,7 +8,7 @@ resource "aws_iam_role" "lambda_DynamoDB_Role" {
       "Action": "sts:AssumeRole",
       "Principal": {
         "Service": "lambda.amazonaws.com"
-      },
+      } ,
       "Effect": "Allow",
       "Sid": ""
     }
@@ -18,12 +18,12 @@ EOF
 }
 #Aws Basic Execution Role
 resource "aws_iam_role_policy_attachment" "basic-exec-role" {
-    role       = "${aws_iam_role.lambda_DynamoDB_Role.name}"
+    role       = aws_iam_role.lambda_DynamoDB_Role.name
     policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
 resource "aws_iam_role_policy_attachment" "vpc_access" {
-    role       = "${aws_iam_role.lambda_DynamoDB_Role.name}"
+    role       = aws_iam_role.lambda_DynamoDB_Role.name
     policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
 }
 # POLICIES
@@ -46,3 +46,4 @@ resource "aws_iam_role_policy" "lambda_DynamoDB_Policy"{
 }
 EOF
 }
+
