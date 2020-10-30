@@ -37,8 +37,8 @@ resource "aws_iam_role_policy" "lambda_DynamoDB_Policy"{
     {
       "Effect": "Allow",
       "Action": [
-        "dynamodb:PutItem",
-        "dynamodb:GetItem"
+        "dynamodb:putItem",
+        "dynamodb:getItem"
       ],
       "Resource": "${var.table_arn}"
     }

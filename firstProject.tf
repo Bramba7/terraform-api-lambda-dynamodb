@@ -17,6 +17,7 @@ terraform {
 
 module "vpc" {
     source = "./modules/vpc"
+
     environment = var.environment
     vpc_cidr = var.vpc_cidr
     sub_cidr = var.sub_cidr
@@ -24,6 +25,7 @@ module "vpc" {
 
 module "dynamoDB" {
     source = "./modules/dynamoDB"
+
     region = var.aws_region
     environment = var.environment
     billing = var.billing
@@ -33,11 +35,13 @@ module "dynamoDB" {
 }
 module "iamRole" {
     source = "./modules/iamRole"
+
     environment = var.environment
     table_arn = module.dynamoDB.table_arn
  }
  module "lambda" {
     source = "./modules/lambda"
+
     environment = var.environment
     timeout_lambda = var.timeout_lambda
     aws_iam_arn = module.iamRole.aws_iam_arn
@@ -45,7 +49,15 @@ module "iamRole" {
     sg = module.vpc.sg
     vpc = module.vpc.vpc
  }
-
+ module "api" {
+    source = "./modules/api"
+    
+    get_name = module.lambda.get_name
+    post_name = module.lambda.post_name
+    get_uri = module.lambda.get_uri
+    post_uri = module.lambda.post_uri
+    environment = var.environment
+ }
 
 variable "environment" {}
 variable "vpc_cidr" {}

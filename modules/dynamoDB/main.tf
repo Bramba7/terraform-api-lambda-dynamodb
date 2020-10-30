@@ -4,8 +4,6 @@ resource "aws_dynamodb_table" "this" {
   billing_mode   = var.billing
   read_capacity  = var.read_capacity
   write_capacity = var.write_capacity
-
-
   hash_key       = "id"
 
   attribute {
@@ -26,8 +24,8 @@ resource "aws_dynamodb_table_item" "this" {
   item = <<ITEM
 {
   "id": {"S": "1"},
-  "first_name": {"S": "Fernando"},
-  "last_name": {"S": "Brambilla de Mello"}
- }
+  "firstName": {"S": "Fernando "},
+  "lastName": {"S": "Brambilla de Mello"}
+   }
 ITEM
 }
