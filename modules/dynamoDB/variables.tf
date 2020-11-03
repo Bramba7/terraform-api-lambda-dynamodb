@@ -6,7 +6,7 @@ variable "dynamodb_table_name"{
     description = "Table name"
  }
  
-variable "region"{
+variable "aws_region"{
     description = "The Amazon Region"
  }
 

@@ -24,8 +24,8 @@ resource "aws_dynamodb_table_item" "this" {
   item = <<ITEM
 {
   "id": {"S": "1"},
-  "firstName": {"S": "Fernando "},
-  "lastName": {"S": "Brambilla de Mello"}
+  "firstName": {"S": "John "},
+  "lastName": {"S": "Smith"}
    }
 ITEM
 }

@@ -1,8 +1,11 @@
 resource "aws_api_gateway_rest_api" "usersApi" {
   name        = "UsersApi"
   description = "Terraform Serverless Application UsersApi"
+  endpoint_configuration {
+      types = ["REGIONAL"]
+  }
   tags = {
-    Name        = "test"
+    Name        = "UserApi"
     Environment = var.environment
   }
 }

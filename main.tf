@@ -20,13 +20,18 @@ module "vpc" {
 
     environment = var.environment
     vpc_cidr = var.vpc_cidr
-    sub_cidr = var.sub_cidr
+    public1_sub_cidr = var.public1_sub_cidr
+    public2_sub_cidr = var.public2_sub_cidr
+    private1_sub_cidr = var.private1_sub_cidr
+    private2_sub_cidr = var.private2_sub_cidr
+    aws_region = var.aws_region
+    
 }
 
 module "dynamoDB" {
     source = "./modules/dynamoDB"
 
-    region = var.aws_region
+    aws_region = var.aws_region
     environment = var.environment
     billing = var.billing
     write_capacity = var.write_capacity
@@ -43,9 +48,11 @@ module "iamRole" {
     source = "./modules/lambda"
 
     environment = var.environment
+    memory_size = var.memory_size
     timeout_lambda = var.timeout_lambda
     aws_iam_arn = module.iamRole.aws_iam_arn
-    subnet = module.vpc.subnet
+    private_subnet1 = module.vpc.private_subnet1
+    private_subnet2 = module.vpc.private_subnet2
     sg = module.vpc.sg
     vpc = module.vpc.vpc
  }
@@ -61,14 +68,17 @@ module "iamRole" {
 
 variable "environment" {}
 variable "vpc_cidr" {}
-variable "sub_cidr" {}
+variable "public1_sub_cidr" {}
+variable "public2_sub_cidr" {}
+variable "private1_sub_cidr" {}
+variable "private2_sub_cidr" {}
 variable "aws_region" {}
 variable "dynamodb_table_name" {}
 variable "billing" {} 
 variable "write_capacity"{} 
 variable "read_capacity" {} 
 variable "timeout_lambda"{}
-
+variable "memory_size"{}
 
 
 
