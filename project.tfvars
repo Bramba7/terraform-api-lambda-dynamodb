@@ -25,6 +25,3 @@ read_capacity  = "20"
 timeout_lambda = "5" 
 memory_size = "128"
 
-######################### 
-# API gateway           
-#########################
