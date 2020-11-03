@@ -138,7 +138,7 @@ After login in your AWS account go to API Gateway Service. Or click on the link 
 ### POST test
 
 Go to **APIs>UsersApi>Resources>POST**  
-Click on Client TEST (There is a little ⚡ )
+Click on Client TEST (There is a little ⚡ )  
 On the Request Body type:
 
 ```json
