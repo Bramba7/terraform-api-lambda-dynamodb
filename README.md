@@ -49,7 +49,7 @@ exports.handler = async (event, context) => {
   const { id } = event.pathParameters;
 
   const params = {
-    TableName: "Users",
+    TableName: "Users",zzz
     Key: {
       id: id,
     },
