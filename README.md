@@ -39,7 +39,7 @@ terraform-api-lambda-dynamodb
 
 ## Getting Started
 
-These instructions will cover usage information and for the docker container
+These instructions will cover usage information and for the Terraform
 
 ### Prerequisites
 
