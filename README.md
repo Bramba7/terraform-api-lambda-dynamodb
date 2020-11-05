@@ -1,5 +1,12 @@
 # Terraform-api-lambda-dynamodb
 
+![terraform](https://img.shields.io/badge/Terraform-v0.13.4-green)
+![aws](https://img.shields.io/badge/aws--cli-v2.0.58-green)
+
+### This project aims to test Terraform by managing and creating an AWS infrastructure. On the AWS side, we have Lambda functions connected to a DynamoBD. These two functions have the purpose of communicating between the API Gateway and the database. For a better understanding below, there is a scheme where it shows all the basic structure of this project.
+
+---
+
 ## Schematic:
 
 ![schematic](images/schematic.jpeg)
@@ -57,29 +64,54 @@ AWS:
 - [OS X](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-mac.html)
 - [Linux](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
 
-### Clone this repository (linux or macOs)
+## Terraform setup
+
+---
+
+**1\. Clone this repository (linux or macOs)**
 
 ```sh
-git clone https://github.com/Bramba7/terraform-api-lambda-dynamodb.git
-cd terraform-api-lambda-dynamodb
+$ git clone https://github.com/Bramba7/terraform-api-lambda-dynamodb.git
+$ cd terraform-api-lambda-dynamodb
 ```
 
-### Configuring credentials for AWS
+**2\. Configuring credentials for AWS**
 
-```sh
-aws configure
+```bash
+$ export AWS_SECRET_ACCESS_KEY='your secret key'
+$ export AWS_ACCESS_KEY_ID='your key id'
+$ export region='your region'
+$ export output= 'json or yaml'
 ```
 
-### Create a bucket on AWS
+... or the `~/.aws/credentials` and `~/.aws/config` file.
+
+```
+$ cat ~/.aws/credentials
+[default]
+aws_access_key_id = your key id
+aws_secret_access_key = your secret key
+
+```
+
+```
+$ cat ~/.aws/config
+[default]
+region= your region
+output= json or yaml
+
+```
+
+**3\. Create a bucket on AWS**
 
 Replace the word "mybucket for the name of your bucket, and the us-west-1 region with your preferred region.
 <br><font color="red"><b> Attention the name of your bucket must be a unique name!!!!</b> </font>
 
 ```sh
-aws s3 mb s3://mybucket --region us-west-1
+$ aws s3 mb s3://mybucket --region YOUR REGION
 ```
 
-### Edit the code with your information
+**4\. Edit the code with your information**
 
 <dl>
   <dt><b>First Step</b></dt>
@@ -104,29 +136,45 @@ terraform {
 }
 ```
 
-### Initialize terraform on the directory
+## Terraform Usage
+
+---
+
+**1\. Initialize terraform on the directory**
+
+Execute the below command to initialize.
 
 ```sh
-terraform init
+$ terraform init
 ```
 
-### Execute terraform project
+**2\. Review the Terraform plan**
+
+Execute the below command and ensure you are happy with the plan.
+
+```bash
+$ terraform plan -var-file="project.tfvars"
+```
+
+**3\. Execute terraform project**
 
 For more agility you can use the command `--auto-approve` to skip the execution confirmation.
 
 ```sh
-terraform apply -var-file="project.tfvars"
+$ terraform apply -var-file="project.tfvars"
 ```
 
-### Delete terraform project
+**4\. Delete terraform project**
 
-For more agility you can use the command `--auto-approve` to skip the execution confirmation.
+Once you are finished your testing, ensure you destroy the resources to avoid unnecessary AWS charges.
 
 ```sh
-terraform destroy -var-file="project.tfvars"
+$ terraform destroy -var-file="project.tfvars"
 ```
 
 ## Test API Gateway on Aws Console
+
+---
 
 After login in your AWS account go to API Gateway Service. Or click on the link below:
 
@@ -135,7 +183,7 @@ After login in your AWS account go to API Gateway Service. Or click on the link 
 - [N. California](https://us-west-1.console.aws.amazon.com/apigateway/main/apis?region=us-west-1)
 - [Oregon](https://us-west-2.console.aws.amazon.com/apigateway/main/apis?region=us-west-2)
 
-### POST test
+**1\. POST test**
 
 Go to **APIs>UsersApi>Resources>POST**  
 Click on Client TEST (There is a little ⚡ )  
@@ -151,7 +199,7 @@ On the Request Body type:
 
 And than click on TEST
 
-### GET test
+**2\. GET test**
 
 Go to **APIs>UsersApi>Resources>GET**  
 Click on Client TEST (There is a little ⚡ )  
