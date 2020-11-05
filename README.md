@@ -46,7 +46,7 @@ terraform-api-lambda-dynamodb
 
 ## Getting Started
 
-These instructions will cover usage information and for the Terraform
+These instructions will cover using, setup, and testing the project.
 
 ### Prerequisites
 
