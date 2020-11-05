@@ -3,7 +3,7 @@
 ![terraform](https://img.shields.io/badge/Terraform-v0.13.4-green)
 ![aws](https://img.shields.io/badge/aws--cli-v2.0.58-green)
 
-#### This project aims to test Terraform by managing and creating an AWS infrastructure. On the AWS side, we have Lambda functions connected to a DynamoBD. These two functions have the purpose of communicating between the API Gateway and the database. For a better understanding below, there is a scheme where it shows all the basic structure of this project.
+#### This project aims to test Terraform by managing and creating an AWS infrastructure. On the AWS side, we have Lambda functions connected to a DynamoBD, and an API Gateway connected to the Lambda. These two functions have the purpose of communicating between the API Gateway and the database. For a better understanding below, there is a scheme where it shows all the basic structure of this project.
 
 ---
 
